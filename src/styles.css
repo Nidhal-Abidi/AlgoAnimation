@@ -1,0 +1,82 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+:root {
+  --nav-clr: #345166;
+  --btn-nav-clr: #2a3240; /* or #0a0d13 */
+  --btn-nav-border: hsl(205, 32%, 10%);
+  --btn-nav-accent: #fe8541;
+  --btn-nav-accent-border: hsl(22, 99%, 43%);
+  --bar-clr: #d4672a; /* or #fe8541 */
+}
+
+body {
+  background-color: #516d81;
+}
+
+/* start of NAVBAR CSS */
+.header {
+  position: sticky;
+  top: 0px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--nav-clr);
+  padding-left: 0.5rem;
+}
+
+.nav-list {
+  display: flex;
+  list-style-type: none;
+  background-color: var(--nav-clr);
+}
+
+.btn {
+  border: 1px solid var(--btn-nav-border);
+  background-color: var(--btn-nav-clr);
+  color: white;
+  font-size: 1.5rem;
+  padding: 0.25em 0.75em;
+  border-radius: 0.5rem;
+  margin: 1rem 0.5rem 1rem 0;
+  cursor: pointer;
+}
+
+.btn:hover,
+.btn:focus {
+  background-color: hsl(205, 32%, 10%);
+  box-shadow: 0 0 8px 0 hsl(205, 32%, 10%);
+}
+
+.btn-accent {
+  background-color: var(--btn-nav-accent);
+  border-color: var(--btn-nav-accent-border);
+}
+
+.btn-accent:hover,
+.btn-accent:focus {
+  background-color: var(--btn-nav-accent-border);
+  box-shadow: 0 0 8px 0 var(--btn-nav-accent-border);
+}
+
+/* start of ANIMATIONS CSS */
+.animation-container {
+  position: relative;
+  bottom: 0;
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 90vw;
+  background-color: rgb(113, 93, 93); /*To remove*/
+  margin: 5vh auto;
+}
+
+.bar {
+  background-color: var(--bar-clr);
+  width: 2%;
+  /* border: 1px solid black; */
+  margin-left: 2px;
+}
