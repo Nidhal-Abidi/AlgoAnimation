@@ -1,7 +1,4 @@
-import { bubbleSort } from "../sortingAlgorithms/algorithms"
-
 export function SortingAnimation({ arr }) {
-  console.log(bubbleSort([...arr]))
   return (
     <main>
       <div className="animation-container">
