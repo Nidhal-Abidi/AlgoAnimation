@@ -3,10 +3,11 @@ import { NavBar } from "./components/NavBar"
 import { SortingAnimation } from "./components/SortingAnimation"
 import "./styles.css"
 function App() {
-  const [arr, setArr] = useState(randArrGenerator)
+  const [arr, setArr] = useState(randArrGenerator) //randArrGenerator
   const [swaps, setSwaps] = useState([])
   const [idx, setIdx] = useState(0)
   const [upperBound, setUpperBound] = useState(0)
+  const [swappedBarsIdx, setSwappedBarsIdx] = useState([])
 
   useEffect(() => {
     let timeId = undefined
@@ -22,6 +23,14 @@ function App() {
         setSwaps((swaps) => {
           return swaps.slice(1)
         })
+        //This is used to color the swapped bars in each step
+        setSwappedBarsIdx([i, j])
+        setIdx((idx) => idx + 1)
+      }, 50)
+    } else if (idx > 0 && idx == upperBound) {
+      //This condition is necessary to remove the colored bars in the last iteration
+      setInterval(() => {
+        setSwappedBarsIdx([])
         setIdx((idx) => idx + 1)
       }, 50)
     }
@@ -40,8 +49,13 @@ function App() {
         setUpperBound={setUpperBound}
         setSwaps={setSwaps}
         setIdx={setIdx}
+        setSwappedBarsIdx={setSwappedBarsIdx}
       />
-      <SortingAnimation arr={arr} setArr={setArr} />
+      <SortingAnimation
+        arr={arr}
+        setArr={setArr}
+        swappedBarsIdx={swappedBarsIdx}
+      />
     </>
   )
 }

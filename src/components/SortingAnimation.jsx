@@ -1,11 +1,16 @@
-export function SortingAnimation({ arr }) {
+export function SortingAnimation({ arr, swappedBarsIdx }) {
   return (
     <main>
       <div className="animation-container">
         {arr.map((value, idx) => {
+          console.log()
           return (
             <div
-              className="bar"
+              className={
+                swappedBarsIdx && swappedBarsIdx.includes(idx)
+                  ? "bar bar-accent"
+                  : "bar"
+              }
               key={idx}
               style={{ height: `${value * 100}%` }}
             ></div>

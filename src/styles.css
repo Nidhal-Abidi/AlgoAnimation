@@ -80,3 +80,7 @@ body {
   /* border: 1px solid black; */
   margin-left: 2px;
 }
+
+.bar-accent {
+  background-color: #e7332d;
+}
