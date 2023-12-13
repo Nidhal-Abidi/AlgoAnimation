@@ -12,6 +12,7 @@ function App() {
   const [upperBound, setUpperBound] = useState(0)
   const [selectedBarsIdx, setselectedBarsIdx] = useState({ indices: [] })
 
+  const [isSoundOn, setIsSoundOn] = useState(true)
   const Comparisons = useRef(0)
   const arrAccesses = useRef(0)
 
@@ -19,7 +20,6 @@ function App() {
     let timeId = undefined
     //console.log("Swaps=", swaps, "/ upperBound=", upperBound, "/ idx=", idx)
 
-    console.log("Comparisons:")
     if (idx < upperBound) {
       let swappingArr = [...arr]
 
@@ -28,8 +28,10 @@ function App() {
       const animationType = swaps[0].type
 
       //Play the animation sounds
-      playNotes(200 + swappingArr[i] * 500)
-      playNotes(200 + swappingArr[j] * 500)
+      if (isSoundOn) {
+        playNotes(200 + swappingArr[i] * 500)
+        playNotes(200 + swappingArr[j] * 500)
+      }
 
       if (animationType == "swap") {
         arrAccesses.current += 1
@@ -95,6 +97,8 @@ function App() {
         setselectedBarsIdx={setselectedBarsIdx}
         Comparisons={Comparisons}
         arrAccesses={arrAccesses}
+        isSoundOn={isSoundOn}
+        setIsSoundOn={setIsSoundOn}
       />
       <SortingAnimation
         arr={arr}

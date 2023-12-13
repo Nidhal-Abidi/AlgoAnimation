@@ -10,9 +10,19 @@ export function NavBar({
   setselectedBarsIdx,
   Comparisons,
   arrAccesses,
+  isSoundOn,
+  setIsSoundOn,
 }) {
+  const toggleSound = () => {
+    setIsSoundOn((isSoundOn) => !isSoundOn)
+  }
   return (
     <header className="header">
+      {isSoundOn ? (
+        <img src="/speaker.png" alt="sound on" onClick={toggleSound} />
+      ) : (
+        <img src="/mute.png" alt="sound off" onClick={toggleSound} />
+      )}
       <button
         className="btn btn-accent"
         onClick={() => {

@@ -33,6 +33,10 @@ body {
   padding-left: 1.5em;
 }
 
+header img {
+  width: 50px;
+  margin-right: 1.5rem;
+}
 .nav-list {
   display: flex;
   list-style-type: none;
