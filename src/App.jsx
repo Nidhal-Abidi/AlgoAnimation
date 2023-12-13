@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { NavBar } from "./components/NavBar"
 import { SortingAnimation } from "./components/SortingAnimation"
 import "./styles.css"
@@ -12,9 +12,14 @@ function App() {
   const [upperBound, setUpperBound] = useState(0)
   const [selectedBarsIdx, setselectedBarsIdx] = useState({ indices: [] })
 
+  const Comparisons = useRef(0)
+  const arrAccesses = useRef(0)
+
   useEffect(() => {
     let timeId = undefined
-    console.log("Swaps=", swaps, "/ upperBound=", upperBound, "/ idx=", idx)
+    //console.log("Swaps=", swaps, "/ upperBound=", upperBound, "/ idx=", idx)
+
+    console.log("Comparisons:")
     if (idx < upperBound) {
       let swappingArr = [...arr]
 
@@ -27,6 +32,13 @@ function App() {
       playNotes(200 + swappingArr[j] * 500)
 
       if (animationType == "swap") {
+        arrAccesses.current += 1
+        console.log(
+          "Comparisons:",
+          Comparisons,
+          " Array accesses:",
+          arrAccesses
+        )
         ;[swappingArr[i], swappingArr[j]] = [swappingArr[j], swappingArr[i]]
         timeId = setInterval(() => {
           setArr(swappingArr)
@@ -39,8 +51,15 @@ function App() {
           //This is used to color the swapped bars in each step
           setselectedBarsIdx({ indices: [i, j], type: "swap" })
           setIdx((idx) => idx + 1)
-        }, 50)
+        }, 10)
       } else if (animationType == "comp") {
+        Comparisons.current += 1
+        console.log(
+          "Comparisons:",
+          Comparisons,
+          " Array accesses:",
+          arrAccesses
+        )
         timeId = setInterval(() => {
           //Remove the first swap from the array since it has already been used.
           setSwaps((swaps) => {
@@ -49,14 +68,14 @@ function App() {
           //This is used to color the swapped bars in each step
           setselectedBarsIdx({ indices: [i, j], type: "comp" })
           setIdx((idx) => idx + 1)
-        }, 50)
+        }, 10)
       }
     } else if (idx > 0 && idx == upperBound) {
       //This condition is necessary to remove the colored bars in the last iteration
       timeId = setInterval(() => {
         setselectedBarsIdx({ indices: [] })
         setIdx((idx) => idx + 1)
-      }, 50)
+      }, 10)
     }
 
     return () => {
@@ -74,6 +93,8 @@ function App() {
         setSwaps={setSwaps}
         setIdx={setIdx}
         setselectedBarsIdx={setselectedBarsIdx}
+        Comparisons={Comparisons}
+        arrAccesses={arrAccesses}
       />
       <SortingAnimation
         arr={arr}

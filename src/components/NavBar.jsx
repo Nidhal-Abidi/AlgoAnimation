@@ -8,6 +8,8 @@ export function NavBar({
   setSwaps,
   setIdx,
   setselectedBarsIdx,
+  Comparisons,
+  arrAccesses,
 }) {
   return (
     <header className="header">
@@ -19,6 +21,8 @@ export function NavBar({
           setUpperBound(0)
           setIdx(0)
           setselectedBarsIdx({ indices: [] })
+          Comparisons.current = 0
+          arrAccesses.current = 0
         }}
       >
         New random Array
@@ -47,6 +51,9 @@ export function NavBar({
           </li>
         </ul>
       </nav>
+      <p>
+        {Comparisons.current} Comparisons, {arrAccesses.current} Array Accesses.
+      </p>
     </header>
   )
 }
