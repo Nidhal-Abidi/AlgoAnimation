@@ -1,7 +1,7 @@
 export function SpeedToggle({ isFast, setIsFast }) {
   return (
     <div className="speed-toggle-container">
-      <img src="/turtle.png" alt="slow speed (turtle)" />
+      <img src="images/turtle.png" alt="slow speed (turtle)" />
       <label className="switch">
         <input
           type="checkbox"
@@ -12,7 +12,7 @@ export function SpeedToggle({ isFast, setIsFast }) {
         />
         <span className="slider round"></span>
       </label>
-      <img src="/rabbit.png" alt="slow speed (turtle)" />
+      <img src="images/rabbit.png" alt="fast speed (rabbit)" />
     </div>
   )
 }

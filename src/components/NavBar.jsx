@@ -27,9 +27,9 @@ export function NavBar({
     <header className="header">
       <SpeedToggle isFast={isFast} setIsFast={setIsFast} />
       {isSoundOn ? (
-        <img src="/speaker.png" alt="sound on" onClick={toggleSound} />
+        <img src="images/speaker.png" alt="sound on" onClick={toggleSound} />
       ) : (
-        <img src="/mute.png" alt="sound off" onClick={toggleSound} />
+        <img src="images/mute.png" alt="sound off" onClick={toggleSound} />
       )}
       <button
         className="btn btn-accent"
