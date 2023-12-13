@@ -7,7 +7,7 @@ export function NavBar({
   setUpperBound,
   setSwaps,
   setIdx,
-  setSwappedBarsIdx,
+  setselectedBarsIdx,
 }) {
   return (
     <header className="header">
@@ -18,7 +18,7 @@ export function NavBar({
           setSwaps([])
           setUpperBound(0)
           setIdx(0)
-          setSwappedBarsIdx([])
+          setselectedBarsIdx({ indices: [] })
         }}
       >
         New random Array

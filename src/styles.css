@@ -81,6 +81,10 @@ body {
   margin-left: 2px;
 }
 
-.bar-accent {
+.bar-accent-swap {
   background-color: #e7332d;
+}
+
+.bar-accent-comp {
+  background-color: rgb(18, 18, 145);
 }

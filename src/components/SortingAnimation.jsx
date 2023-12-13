@@ -1,16 +1,23 @@
-export function SortingAnimation({ arr, swappedBarsIdx }) {
+export function SortingAnimation({ arr, selectedBarsIdx }) {
   return (
     <main>
       <div className="animation-container">
         {arr.map((value, idx) => {
-          console.log()
+          let barColorClass = "bar"
+          if (
+            selectedBarsIdx &&
+            selectedBarsIdx.indices &&
+            selectedBarsIdx.indices.includes(idx)
+          ) {
+            if (selectedBarsIdx.type == "swap") {
+              barColorClass += " bar-accent-swap"
+            } else {
+              barColorClass += " bar-accent-comp"
+            }
+          }
           return (
             <div
-              className={
-                swappedBarsIdx && swappedBarsIdx.includes(idx)
-                  ? "bar bar-accent"
-                  : "bar"
-              }
+              className={barColorClass}
               key={idx}
               style={{ height: `${value * 100}%` }}
             ></div>

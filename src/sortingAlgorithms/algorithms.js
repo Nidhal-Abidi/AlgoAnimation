@@ -7,8 +7,10 @@ export const bubbleSort = (arr) => {
     for (let i = 1; i < arr.length; i++) {
       if (arr[i - 1] > arr[i]) {
         swapped = true
-        swaps.push([i - 1, i])
+        swaps.push({ indices: [i - 1, i], type: "swap" })
         ;[arr[i - 1], arr[i]] = [arr[i], arr[i - 1]]
+      } else {
+        swaps.push({ indices: [i - 1, i], type: "comp" })
       }
     }
   } while (swapped)

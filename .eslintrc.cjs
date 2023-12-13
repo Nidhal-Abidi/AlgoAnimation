@@ -18,5 +18,6 @@ module.exports = {
     ],
     "no-unused-vars": "warn",
     "react/prop-types": "off",
+    "no-extra-semi": "warn",
   },
 }
