@@ -1,3 +1,4 @@
+let audioCtx = null
 export function SortingAnimation({ arr, selectedBarsIdx }) {
   return (
     <main>
