@@ -36,12 +36,12 @@ function App() {
 
       if (animationType == "swap") {
         arrAccesses.current += 1
-        console.log(
+        /*console.log(
           "Comparisons:",
           Comparisons,
           " Array accesses:",
           arrAccesses
-        )
+        )*/
         ;[swappingArr[i], swappingArr[j]] = [swappingArr[j], swappingArr[i]]
         timeId = setInterval(
           () => {
@@ -60,12 +60,12 @@ function App() {
         )
       } else if (animationType == "comp") {
         Comparisons.current += 1
-        console.log(
+        /*console.log(
           "Comparisons:",
           Comparisons,
           " Array accesses:",
           arrAccesses
-        )
+        )*/
         timeId = setInterval(
           () => {
             //Remove the first swap from the array since it has already been used.

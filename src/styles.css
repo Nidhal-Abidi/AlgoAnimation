@@ -23,6 +23,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
   background-color: var(--nav-clr);
   padding-left: 1.5rem;
 }

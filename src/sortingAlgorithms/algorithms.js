@@ -1,5 +1,5 @@
 export const bubbleSort = (arr) => {
-  // `swaps` records all the swaps that happen so that we can use them for the animations.
+  // `swaps` records all the swaps & comparisons that happen so that we can use them for the animations.
   let swaps = []
   let swapped = false
   do {
@@ -15,4 +15,25 @@ export const bubbleSort = (arr) => {
     }
   } while (swapped)
   return [arr, swaps]
+}
+
+export const selectionSort = (array) => {
+  let swaps = []
+  let n = array.length
+  for (let i = 0; i < n; i++) {
+    let min = i
+    for (let j = i + 1; j < n; j++) {
+      swaps.push({ indices: [min, j], type: "comp" })
+      if (array[j] < array[min]) {
+        min = j
+      }
+    }
+    if (min !== i) {
+      swaps.push({ indices: [i, min], type: "swap" })
+      let tmp = array[i]
+      array[i] = array[min]
+      array[min] = tmp
+    }
+  }
+  return [array, swaps]
 }

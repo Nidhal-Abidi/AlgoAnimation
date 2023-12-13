@@ -1,4 +1,4 @@
-import { bubbleSort } from "../sortingAlgorithms/algorithms"
+import { bubbleSort, selectionSort } from "../sortingAlgorithms/algorithms"
 import { SpeedToggle } from "./SpeedToggle"
 
 export function NavBar({
@@ -51,7 +51,7 @@ export function NavBar({
               className="btn"
               onClick={() => {
                 let [sortedArr, swaps] = bubbleSort([...arr])
-                console.log("Sorted Arr=", sortedArr)
+                //console.log("Sorted Arr=", sortedArr)
 
                 setSwaps(swaps)
                 setUpperBound(swaps.length)
@@ -61,7 +61,17 @@ export function NavBar({
             </button>
           </li>
           <li className="nav-list-item">
-            <button className="btn">Selection Sort</button>
+            <button
+              className="btn"
+              onClick={() => {
+                let [sortedArr, swaps] = selectionSort([...arr])
+
+                setSwaps(swaps)
+                setUpperBound(swaps.length)
+              }}
+            >
+              Selection Sort
+            </button>
           </li>
         </ul>
       </nav>
