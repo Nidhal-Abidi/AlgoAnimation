@@ -37,3 +37,26 @@ export const selectionSort = (array) => {
   }
   return [array, swaps]
 }
+
+export const insertionSort = (arr) => {
+  let swaps = []
+
+  let n = arr.length
+  let i, key, j
+  for (i = 1; i < n; i++) {
+    key = arr[i]
+    j = i - 1
+    while (j >= 0) {
+      swaps.push({ indices: [j, i], type: "comp" })
+      if (arr[j] > key) {
+        swaps.push({ indices: [j, j + 1], type: "swap" })
+        arr[j + 1] = arr[j]
+        j = j - 1
+      } else {
+        break
+      }
+    }
+    arr[j + 1] = key
+  }
+  return [arr, swaps]
+}

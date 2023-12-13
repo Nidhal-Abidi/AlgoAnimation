@@ -1,4 +1,8 @@
-import { bubbleSort, selectionSort } from "../sortingAlgorithms/algorithms"
+import {
+  bubbleSort,
+  insertionSort,
+  selectionSort,
+} from "../sortingAlgorithms/algorithms"
 import { SpeedToggle } from "./SpeedToggle"
 
 export function NavBar({
@@ -44,7 +48,16 @@ export function NavBar({
       <nav>
         <ul className="nav-list">
           <li className="nav-list-item">
-            <button className="btn">Merge Sort</button>
+            <button
+              className="btn"
+              onClick={() => {
+                let [sortedArr, swaps] = insertionSort([...arr])
+                setSwaps(swaps)
+                setUpperBound(swaps.length)
+              }}
+            >
+              Insertion Sort
+            </button>
           </li>
           <li className="nav-list-item">
             <button
