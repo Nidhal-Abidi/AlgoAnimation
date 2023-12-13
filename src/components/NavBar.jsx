@@ -1,4 +1,5 @@
 import { bubbleSort } from "../sortingAlgorithms/algorithms"
+import { SpeedToggle } from "./SpeedToggle"
 
 export function NavBar({
   randArrGenerator,
@@ -12,12 +13,15 @@ export function NavBar({
   arrAccesses,
   isSoundOn,
   setIsSoundOn,
+  isFast,
+  setIsFast,
 }) {
   const toggleSound = () => {
     setIsSoundOn((isSoundOn) => !isSoundOn)
   }
   return (
     <header className="header">
+      <SpeedToggle isFast={isFast} setIsFast={setIsFast} />
       {isSoundOn ? (
         <img src="/speaker.png" alt="sound on" onClick={toggleSound} />
       ) : (

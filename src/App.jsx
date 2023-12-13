@@ -13,6 +13,7 @@ function App() {
   const [selectedBarsIdx, setselectedBarsIdx] = useState({ indices: [] })
 
   const [isSoundOn, setIsSoundOn] = useState(true)
+  const [isFast, setIsFast] = useState(true)
   const Comparisons = useRef(0)
   const arrAccesses = useRef(0)
 
@@ -42,18 +43,21 @@ function App() {
           arrAccesses
         )
         ;[swappingArr[i], swappingArr[j]] = [swappingArr[j], swappingArr[i]]
-        timeId = setInterval(() => {
-          setArr(swappingArr)
+        timeId = setInterval(
+          () => {
+            setArr(swappingArr)
 
-          //Remove the first swap from the array since it has already been used.
-          setSwaps((swaps) => {
-            return swaps.slice(1)
-          })
+            //Remove the first swap from the array since it has already been used.
+            setSwaps((swaps) => {
+              return swaps.slice(1)
+            })
 
-          //This is used to color the swapped bars in each step
-          setselectedBarsIdx({ indices: [i, j], type: "swap" })
-          setIdx((idx) => idx + 1)
-        }, 10)
+            //This is used to color the swapped bars in each step
+            setselectedBarsIdx({ indices: [i, j], type: "swap" })
+            setIdx((idx) => idx + 1)
+          },
+          isFast ? 10 : 700
+        )
       } else if (animationType == "comp") {
         Comparisons.current += 1
         console.log(
@@ -62,28 +66,34 @@ function App() {
           " Array accesses:",
           arrAccesses
         )
-        timeId = setInterval(() => {
-          //Remove the first swap from the array since it has already been used.
-          setSwaps((swaps) => {
-            return swaps.slice(1)
-          })
-          //This is used to color the swapped bars in each step
-          setselectedBarsIdx({ indices: [i, j], type: "comp" })
-          setIdx((idx) => idx + 1)
-        }, 10)
+        timeId = setInterval(
+          () => {
+            //Remove the first swap from the array since it has already been used.
+            setSwaps((swaps) => {
+              return swaps.slice(1)
+            })
+            //This is used to color the swapped bars in each step
+            setselectedBarsIdx({ indices: [i, j], type: "comp" })
+            setIdx((idx) => idx + 1)
+          },
+          isFast ? 10 : 700
+        )
       }
     } else if (idx > 0 && idx == upperBound) {
       //This condition is necessary to remove the colored bars in the last iteration
-      timeId = setInterval(() => {
-        setselectedBarsIdx({ indices: [] })
-        setIdx((idx) => idx + 1)
-      }, 10)
+      timeId = setInterval(
+        () => {
+          setselectedBarsIdx({ indices: [] })
+          setIdx((idx) => idx + 1)
+        },
+        isFast ? 10 : 700
+      )
     }
 
     return () => {
       clearInterval(timeId)
     }
-  }, [arr, idx, upperBound, swaps])
+  }, [arr, idx, upperBound, swaps, isFast, isSoundOn])
 
   return (
     <>
@@ -99,6 +109,8 @@ function App() {
         arrAccesses={arrAccesses}
         isSoundOn={isSoundOn}
         setIsSoundOn={setIsSoundOn}
+        isFast={isFast}
+        setIsFast={setIsFast}
       />
       <SortingAnimation
         arr={arr}
