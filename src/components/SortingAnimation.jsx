@@ -1,6 +1,9 @@
+import { Tutorial } from "./Tutorial"
+
 export function SortingAnimation({ arr, selectedBarsIdx }) {
   return (
     <main>
+      <Tutorial />
       <div className="animation-container">
         {arr.map((value, idx) => {
           let barColorClass = "bar"
