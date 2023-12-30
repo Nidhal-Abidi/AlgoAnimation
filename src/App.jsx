@@ -19,7 +19,6 @@ function App() {
 
   useEffect(() => {
     let timeId = undefined
-    //console.log("Swaps=", swaps, "/ upperBound=", upperBound, "/ idx=", idx)
 
     if (idx < upperBound) {
       let swappingArr = [...arr]
@@ -30,18 +29,12 @@ function App() {
 
       //Play the animation sounds
       if (isSoundOn) {
-        playNotes(200 + swappingArr[i] * 500)
-        playNotes(200 + swappingArr[j] * 500)
+        const waveFormType = animationType == "swap" ? "square" : "sine"
+        playNotes(200 + (swappingArr[i] + swappingArr[j]) * 500, waveFormType)
       }
 
       if (animationType == "swap") {
         arrAccesses.current += 1
-        /*console.log(
-          "Comparisons:",
-          Comparisons,
-          " Array accesses:",
-          arrAccesses
-        )*/
         ;[swappingArr[i], swappingArr[j]] = [swappingArr[j], swappingArr[i]]
         timeId = setInterval(
           () => {
@@ -60,12 +53,7 @@ function App() {
         )
       } else if (animationType == "comp") {
         Comparisons.current += 1
-        /*console.log(
-          "Comparisons:",
-          Comparisons,
-          " Array accesses:",
-          arrAccesses
-        )*/
+
         timeId = setInterval(
           () => {
             //Remove the first swap from the array since it has already been used.
@@ -129,7 +117,7 @@ const randArrGenerator = () => {
   return arr
 }
 
-function playNotes(freq) {
+function playNotes(freq, type) {
   if (audioCtx == null) {
     audioCtx = new (AudioContext || window.webkitAudioContext)()
   }
@@ -137,9 +125,10 @@ function playNotes(freq) {
   const osc = audioCtx.createOscillator()
   osc.frequency.value = freq
   osc.start()
+  osc.type = type
   osc.stop(audioCtx.currentTime + dur)
   const node = audioCtx.createGain()
-  node.gain.value = 0.1
+  node.gain.value = 0.2
   node.gain.linearRampToValueAtTime(0, audioCtx.currentTime + dur)
   osc.connect(node)
   node.connect(audioCtx.destination)
