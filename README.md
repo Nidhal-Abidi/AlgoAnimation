@@ -1,4 +1,4 @@
-# A React application designed to audibly and visually represent the process of sorting algorithms.
+# AlgoAnimation
 
 This app is a visual way to see insertion sort, bubble sort, and selection sort in action. Available at: https://nidhal-abidi.github.io/AlgoAnimation/
 
